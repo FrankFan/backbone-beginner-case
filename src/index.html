@@ -31,5 +31,10 @@
 		<p>编号：<%= userid %></p>
 		<a href="javascript:void(0);" class="editUser">名字：<%= username %></a>
 	</script>
+
+	<script type="text/template" id="modify-template">
+		<input type="text" value="<%= username %>" />
+		<a href="javascript:void(0);" class="add"><%= !username ? "增加" : "修改" %></a>
+	</script>
 </body>
 </html>
