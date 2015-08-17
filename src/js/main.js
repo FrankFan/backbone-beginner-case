@@ -108,6 +108,14 @@ $(function(){
 
 		// ------------------------------------------------
 
+		var UserView = View.extend({
+
+		});
+
+		var UserModifyView = View.extend({
+			
+		});
+
 		TODO.App = Backbone.Router.extend({
 
 		});
