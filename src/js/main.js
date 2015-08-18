@@ -117,7 +117,41 @@ $(function(){
 		});
 
 		TODO.App = Backbone.Router.extend({
+			initialize: function (el) {
+				this.el = el;
+				this.userCollection = new UserCollection();
+			},
 
+			routes: {
+				'': 'list',
+				'list': 'list',
+				'add': 'add',
+				'edit/:cid': 'edit',
+				'user': 'user',
+				'user/:cid': 'user'
+			},
+
+			list: function () {
+				var router = this;
+				this.clean();
+				this.currnetView = new UserListView({
+					collection: router.userCollection,
+					router: router
+				}).render().$el.appendTo($(this.el));
+			},
+			edit: function (cid) {
+				var router = this,
+					user = null;
+				this.clean();
+
+				if (cid) {
+					user = router.userCollection.getByCid(cid);
+				}
+				this.currnetView = new UserModifyView({
+					model: user,
+					router: router
+				}).render().$el.appendTo($(this.el));
+			}
 		});
 
 
