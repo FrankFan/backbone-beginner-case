@@ -151,6 +151,19 @@ $(function(){
 					model: user,
 					router: router
 				}).render().$el.appendTo($(this.el));
+			},
+			user: function (cid) {
+				var router = this,
+					user = null;
+				this.clean();
+
+				if (cid) {
+					user = router.userCollection.getByCid(cid);
+				}
+				this.currnetView = new UserView({
+					model: user,
+					router: router
+				}).render().$el.appendTo($(this.el));
 			}
 		});
 
