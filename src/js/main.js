@@ -164,6 +164,12 @@ $(function(){
 					model: user,
 					router: router
 				}).render().$el.appendTo($(this.el));
+			},
+			clean: function () {
+				if (this.currnetView) {
+					this.currnetView.remove();
+					this.currnetView = null;
+				}
 			}
 		});
 
