@@ -113,7 +113,28 @@ $(function(){
 		});
 
 		var UserModifyView = View.extend({
-			
+			template: _.template($('#modify-template').html()),
+
+			initialize: function () {
+				this.router = this.options.router;
+			},
+
+			render: function () {
+				var view = this;
+				if (this.model) {
+					this.$el.html(this.template(this.model.toJSON()));
+				} else {
+					this.$el.html(this.template({
+						username: ''
+					}));
+				}
+
+				setTimeout(function () {
+					view.$el.find('input').focus().select();
+				}, 0);
+				
+				return this;
+			}
 		});
 
 		TODO.App = Backbone.Router.extend({
