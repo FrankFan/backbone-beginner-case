@@ -132,8 +132,27 @@ $(function(){
 				setTimeout(function () {
 					view.$el.find('input').focus().select();
 				}, 0);
-				
+
 				return this;
+			},
+			events: {
+				'click a.add': 'modify'
+			},
+			modify: function () {
+				var view = this;
+				if (this.model) {
+					this.model.save({
+						'username': this.$el.find('input').val()
+					});
+				} else {
+					this.router.userCollection.create({
+						new User({
+							username: view.$el.find('input').val(),
+							userid: ++userid
+						})
+					});
+				}
+				this.router.navigate('list', {trigger: 'true'})
 			}
 		});
 
