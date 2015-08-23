@@ -110,6 +110,24 @@ $(function(){
 
 		var UserView = View.extend({
 
+			template: _.template($('#user-template').html()),
+
+			initialize: function () {
+				this.router = this.options.router;
+			}
+
+			render: function () {
+				var view = this;
+				this.$el.html(this.template(this.model.toJSON()));
+				return this;
+			},
+			events: {
+				'click .editUser': 'editUser'
+			},
+			editUser: function () {
+				this.router.navigate('edit', {trigger: trigger});
+				this.remove();
+			}
 		});
 
 		var UserModifyView = View.extend({
