@@ -38,7 +38,7 @@ $(function(){
 
 			tagNmae: 'li',
 
-			template: _.template($('#user-item-template').html());
+			template: _.template($('#item-template').html()),
 
 			render: function() {
 				this.$el.html(this.template(this.model.toJSON()));
@@ -110,11 +110,11 @@ $(function(){
 
 		var UserView = View.extend({
 
-			template: _.template($('#user-template').html()),
+			template: _.template($('#detail-template').html()),
 
 			initialize: function () {
 				this.router = this.options.router;
-			}
+			},
 
 			render: function () {
 				var view = this;
@@ -163,12 +163,12 @@ $(function(){
 						'username': this.$el.find('input').val()
 					});
 				} else {
-					this.router.userCollection.create({
+					this.router.userCollection.create(
 						new User({
 							username: view.$el.find('input').val(),
 							userid: ++userid
 						})
-					});
+					);
 				}
 				this.router.navigate('list', {trigger: 'true'})
 			}
